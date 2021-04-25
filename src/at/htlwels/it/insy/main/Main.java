@@ -3,7 +3,7 @@ package at.htlwels.it.insy.main;
 import at.htlwels.it.insy.model.*;
 import com.winklerlabs.ASCIIWriter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
