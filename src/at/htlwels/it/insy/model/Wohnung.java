@@ -1,11 +1,60 @@
 package at.htlwels.it.insy.model;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Wohnung {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long oid;
 
     private String interneBezeichnung;
     private int adressNummer;
 
+    @OneToMany(mappedBy = "wohnung", fetch = FetchType.LAZY)
+    private List<Mietvertrag> mitvertraege = new ArrayList<>();
+    
+    @ManyToOne
+    @JoinColumn(name = "gebaeudeOID", nullable = false)
+    private Gebaeude gebaeude;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "WOHNUNG_BEWOHNER",
+            joinColumns = {@JoinColumn (name = "WohnungOID")},
+            inverseJoinColumns =  {@JoinColumn(name = "BewohnerOID")}
+    )
+    private List<Bewohner> bewohner = new ArrayList<>();
+
     public Wohnung() {
+    }
+
+    public Long getOid() {
+        return oid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public List<Mietvertrag> getMitvertraege() {
+        return mitvertraege;
+    }
+
+    public void setMitvertraege(List<Mietvertrag> mitvertraege) {
+        this.mitvertraege = mitvertraege;
+    }
+
+    public Gebaeude getGebaeude() {
+        return gebaeude;
+    }
+
+    public void setGebaeude(Gebaeude gebaeude) {
+        this.gebaeude = gebaeude;
     }
 
     public String getInterneBezeichnung() {

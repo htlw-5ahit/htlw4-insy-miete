@@ -1,14 +1,35 @@
 package at.htlwels.it.insy.model;
 
-import java.sql.Date;
+import jakarta.persistence.*;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Mieter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long oid;
 
     private int einStuffung;
     private String status;
     private Date kontaktDatum;
 
+    @OneToMany(mappedBy = "mieter", fetch = FetchType.LAZY)
+    private List<Mietvertrag> mitvertraege = new ArrayList<>();
+
     public Mieter() {
+    }
+
+    public long getOid() {
+        return oid;
+    }
+
+    public void setOid(long oid) {
+        this.oid = oid;
     }
 
     public int getEinStuffung() {

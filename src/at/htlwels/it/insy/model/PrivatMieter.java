@@ -1,11 +1,26 @@
 package at.htlwels.it.insy.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class PrivatMieter extends Mieter {
 
     private String bezeichnung;
     private int angegebeneAnzahlMieter;
 
+    @OneToMany(mappedBy = "privatMieter", fetch = FetchType.LAZY)
+    private List<Bewohner> bewohner = new ArrayList<>();
+
     public PrivatMieter() {
+    }
+
+    public List<Bewohner> getBewohner() {
+        return bewohner;
     }
 
     public String getBezeichnung() {

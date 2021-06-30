@@ -1,13 +1,39 @@
 package at.htlwels.it.insy.model;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Adresse {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long oid;
 
     private String strasse;
     private int postleitzahl;
     private String ort;
     private String land;
 
+    @OneToOne(mappedBy = "adresse")
+    private Liegenschaft liegenschaft;
+
     public Adresse() {
+    }
+
+    public Long getOid() {
+        return oid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public Liegenschaft getLiegenschaft() {
+        return liegenschaft;
+    }
+
+    public void setLiegenschaft(Liegenschaft liegenschaft) {
+        this.liegenschaft = liegenschaft;
     }
 
     public String getStrasse() {

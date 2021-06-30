@@ -12,14 +12,14 @@ import static com.winklerlabs.ASCIIWriter.*;
 
 public class Main {
 
-    private static final String PERSISTENCE_UNIT_NAME = "school_SQLServer";
+    private static final String PERSISTENCE_UNIT_NAME = "school_MySQL";
     private static EntityManagerFactory factory;
 
 
 //    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
 
-        printSignatureOne();
+        // printSignatureOne();
         // Nicht vergessen, im Dadenbanksystem die entsprechende Datenbank
         // 'Miete" anlegen.
 

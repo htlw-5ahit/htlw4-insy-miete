@@ -1,8 +1,15 @@
 package at.htlwels.it.insy.model;
 
+import jakarta.persistence.*;
+
 import java.sql.Date;
 
+@Entity
 public class Mietvertrag {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long oid;
 
     private Date ausstellungsDatum;
     private Date mietBeginn;
@@ -10,7 +17,39 @@ public class Mietvertrag {
     private float miete;
     private float kaution;
 
+    @ManyToOne
+    @JoinColumn(name = "mieterOID", nullable = false)
+    private Mieter mieter;
+
+    @ManyToOne
+    @JoinColumn(name = "wohnungOID", nullable = false)
+    private Wohnung wohnung;
+
     public Mietvertrag() {
+    }
+
+    public long getOid() {
+        return oid;
+    }
+
+    public void setOid(long oid) {
+        this.oid = oid;
+    }
+
+    public Mieter getMieter() {
+        return mieter;
+    }
+
+    public void setMieter(Mieter mieter) {
+        this.mieter = mieter;
+    }
+
+    public Wohnung getWohnung() {
+        return wohnung;
+    }
+
+    public void setWohnung(Wohnung wohnung) {
+        this.wohnung = wohnung;
     }
 
     public Date getAusstellungsDatum() {

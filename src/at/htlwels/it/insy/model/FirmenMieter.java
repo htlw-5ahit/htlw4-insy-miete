@@ -1,7 +1,10 @@
 package at.htlwels.it.insy.model;
 
+import jakarta.persistence.Entity;
+
 import java.sql.Date;
 
+@Entity
 public class FirmenMieter extends Mieter {
 
     private int FirmenbuchNummer;

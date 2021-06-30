@@ -1,15 +1,47 @@
 package at.htlwels.it.insy.model;
 
-import java.sql.Date;
+import jakarta.persistence.*;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Bewohner {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long oid;
+    
     private Date geburtsDatum;
     private Date einzugsDatum;
     private Date auszugsDatum;
     private String geburtsOrt;
 
+    @ManyToMany(mappedBy = "bewohner")
+    private List<Wohnung> wohnungen = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "privatMieterOID", nullable = false)
+    private PrivatMieter privatMieter;
+
     public Bewohner() {
+    }
+
+    public long getOid() {
+        return oid;
+    }
+
+    public void setOid(long oid) {
+        this.oid = oid;
+    }
+
+    public PrivatMieter getPrivatMieter() {
+        return privatMieter;
+    }
+
+    public void setPrivatMieter(PrivatMieter privatMieter) {
+        this.privatMieter = privatMieter;
     }
 
     public Date getGeburtsDatum() {

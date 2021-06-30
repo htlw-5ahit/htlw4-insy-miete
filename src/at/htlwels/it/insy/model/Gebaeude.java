@@ -1,11 +1,52 @@
 package at.htlwels.it.insy.model;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
 public class Gebaeude {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long oid;
+    
     private String interneKennzeichnung;
     private String interneNummer;
 
+    @OneToMany(mappedBy = "gebaeude", fetch = FetchType.LAZY)
+    private List<Wohnung> wohnungen = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "liegenschaftOID", nullable = false)
+    private Liegenschaft liegenschaft;
+
     public Gebaeude() {
+    }
+
+    public Long getOid() {
+        return oid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
+    }
+
+    public List<Wohnung> getWohnungen() {
+        return wohnungen;
+    }
+
+    public void setWohnungen(List<Wohnung> wohnungen) {
+        this.wohnungen = wohnungen;
+    }
+
+    public Liegenschaft getLiegenschaft() {
+        return liegenschaft;
+    }
+
+    public void setLiegenschaft(Liegenschaft liegenschaft) {
+        this.liegenschaft = liegenschaft;
     }
 
     public String getInterneKennzeichnung() {
