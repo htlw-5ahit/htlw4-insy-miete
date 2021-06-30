@@ -73,6 +73,14 @@ public class Wohnung {
         this.adressNummer = adressNummer;
     }
 
+    public List<Bewohner> getBewohner() {
+        return bewohner;
+    }
+
+    public void setBewohner(List<Bewohner> bewohner) {
+        this.bewohner = bewohner;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

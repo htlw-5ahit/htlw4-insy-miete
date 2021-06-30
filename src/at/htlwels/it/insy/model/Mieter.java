@@ -19,7 +19,7 @@ public class Mieter {
     private Date kontaktDatum;
 
     @OneToMany(mappedBy = "mieter", fetch = FetchType.LAZY)
-    private List<Mietvertrag> mitvertraege = new ArrayList<>();
+    private List<Mietvertrag> mietvertraege = new ArrayList<>();
 
     public Mieter() {
     }
@@ -54,6 +54,14 @@ public class Mieter {
 
     public void setKontaktDatum(Date kontaktDatum) {
         this.kontaktDatum = kontaktDatum;
+    }
+
+    public List<Mietvertrag> getMietvertraege() {
+        return mietvertraege;
+    }
+
+    public void setMietvertraege(List<Mietvertrag> mietvertraege) {
+        this.mietvertraege = mietvertraege;
     }
 
     @Override
